@@ -58,7 +58,7 @@ class Program
 
     private static string ErrorRegToken()
     {
-        Console.WriteLine("Token is not found" +
+        Console.WriteLine("Token is not found." +
                           "Press any key to exit.");
         Console.ReadKey();
         Environment.Exit(1);

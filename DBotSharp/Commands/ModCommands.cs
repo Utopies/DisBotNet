@@ -59,4 +59,15 @@ public class ModCommands : InteractionModuleBase<SocketInteractionContext>
         
         await RespondAsync(embed: answer.Build());
     }
+
+    [SlashCommand("clear", "очистить чат")]
+    [RequireUserPermission(GuildPermission.ManageMessages)]
+    public async Task Clear( [Summary("count" )] int count)
+    {
+        var messages = await Context.Channel.GetMessagesAsync(count).FlattenAsync();
+        foreach (var msg in messages)
+            await msg.DeleteAsync();
+        
+        await RespondAsync($"{Context.User.Mention} deleted {count} messages.");
+    }
 }
