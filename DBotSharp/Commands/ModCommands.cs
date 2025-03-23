@@ -10,8 +10,8 @@ public class ModCommands : InteractionModuleBase<SocketInteractionContext>
     [RequireUserPermission(GuildPermission.MuteMembers)]
     public async Task Mute(
         [Summary("User", "Какого юзера надо надо замьютить")] SocketGuildUser user, 
-        [Summary("Time", "Сколько время человек будет наказан(в минутах)")] int t = 30, 
-        [Summary("Reason", "Причина наказания")] string reason = "не указана")
+        [Summary("Time", "Сколько время человек будет наказан(в минутах)")] int t = 20, 
+        [Summary("Reason", "Причина наказания")] string reason = "[ - ]")
     {
         var answer = new EmbedBuilder()
             .WithDescription($"{user.Mention} is muted")
@@ -28,7 +28,7 @@ public class ModCommands : InteractionModuleBase<SocketInteractionContext>
     [RequireUserPermission(GuildPermission.MuteMembers)]
     public async Task Unmute(
         [Summary("User", "Кому вернуть голос")] SocketGuildUser user,
-        [Summary("Reason")] string reason = "не указана")
+        [Summary("Reason")] string reason = "[ - ]")
     {
         var answer = new EmbedBuilder()
             .WithDescription($"{user.Mention} is unmuted.")
@@ -62,7 +62,7 @@ public class ModCommands : InteractionModuleBase<SocketInteractionContext>
 
     [SlashCommand("clear", "очистить чат")]
     [RequireUserPermission(GuildPermission.ManageMessages)]
-    public async Task Clear( [Summary("count" )] int count)
+    public async Task Clear( [Summary("count" )] int count = 1)
     {
         var messages = await Context.Channel.GetMessagesAsync(count).FlattenAsync();
         foreach (var msg in messages)

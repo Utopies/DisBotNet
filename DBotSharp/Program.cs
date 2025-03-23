@@ -22,8 +22,8 @@ class Program
         _client.Ready += OnReady;
         _client.InteractionCreated += HandleInteraction;
         
-        
         await _client.StartAsync();
+        
         await Task.Delay(-1);
     }
 
@@ -67,7 +67,6 @@ class Program
     
     private static  IAsyncEnumerable<string?> ReadLinesFileAsync(string path)
         => File.ReadLinesAsync(path);
-    
     
     private static DiscordSocketConfig SoketConfig()
         => new ()
